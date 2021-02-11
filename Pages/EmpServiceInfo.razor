@@ -1,0 +1,463 @@
+﻿@page "/EmpServiceInfo"
+@inject IMatToaster Toaster
+@inject NavigationManager NavManager
+
+<PageTitle Title="EmpServiceInfo"></PageTitle>
+<h3>EmpServiceInfo</h3>
+<div class="d-flex flex-row">
+    <div class="p-2 mr-3">
+        @*<RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@OpenDialog"></RadzenButton>*@
+        <MatButton Raised="true" Label="Add" Icon="add_circle" @onclick="@(_=> { DialogAddOpen = true; })"></MatButton>
+    </div>
+    <div class="p-2 mr-3">
+        <MatButton Raised="true" Label="Report" Icon="report" @onclick="@(_=> { DialogReportOpen = true; })"></MatButton>
+    </div>
+</div>
+
+@if (_empModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenGrid @ref="EmpGrid" AllowFiltering="true" AllowPaging="true" PageSize="10" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_employees" TItem="EmpService" ColumnWidth="90px">
+        <Columns>
+            <RadzenGridColumn TItem="EmpService" Property="FirstName" Title="First Name">
+                <Template Context="emp">
+                    @emp.FirstName
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="LastName" Title="Last Name">
+                <Template Context="emp">
+                    @emp.LastName
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="EmailAddress" Title="Email">
+                <Template Context="emp">
+                    @emp.EmailAddress
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="PhoneNumber" Title="Phone">
+                <Template Context="emp">
+                    @emp.PhoneNumber
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="Position" Title="Position">
+                <Template Context="emp">
+                    @emp.Position
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="Department" Title="Department">
+                <Template Context="emp">
+                    @emp.Department
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="StartDate" Title="Start Date" Width="80px">
+                <Template Context="emp">
+                    @($"{emp.StartDate:d}")
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="EmployeeStatus" Title="Status" Width="60px">
+                <Template Context="emp">
+                    @emp.GetEmployeeStatus()
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="Shift" Title="Shift" Width="70px">
+                <Template Context="emp">
+                    @emp.Shift
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="Manager" Title="Manager">
+                <Template Context="emp">
+                    @emp.Manager
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="FavoriteColor" Title="FavoriteColor">
+                <Template Context="emp">
+                    @emp.FavoriteColor
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Property="TerminationDate" Title="Termination Date">
+                <Template Context="emp">
+                    @if (EmpService.IsDateTimeSet(emp.TerminationDate))
+                    {
+                        @($"{emp.TerminationDate:d}")
+                    }
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Context="emp" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="emp">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(emp))"></RadzenButton>
+                </Template>
+                <EditTemplate Context="emp">
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((_) => CancelEdit(emp))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmpService" Context="emp" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="emp">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(emp))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="emp">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(emp))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+
+}
+
+<MatDialog @bind-IsOpen="@DialogAddOpen" Class="matdialog-override-max-width">
+    <MatDialogContent>
+        <div class="container-fluid">
+            <RadzenTemplateForm Data="@_empOpen">
+                <div class="row">
+                    <div class="col-md-12">
+                        <RadzenFieldset Text="Add Employee Info">
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="First Name" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.FirstName" AllowClear="true" Placeholder="First Name" Name="FirstName"></RadzenTextBox>
+                                    <RadzenRequiredValidator Component="FirstName" Text="First name is required" Popup="true" Style="position: absolute" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Last Name" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.LastName" AllowClear="true" Placeholder="Last Name" Name="LastName"></RadzenTextBox>
+                                    <RadzenRequiredValidator Component="LastName" Text="LastName is required" Popup="true" Style="position: absolute" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Email" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.EmailAddress" AllowClear="true" Placeholder="Email" Name="EmailAddress"></RadzenTextBox>
+                                    <RadzenRequiredValidator Component="EmailAddress" Text="Email is required" Popup="true" Style="position: absolute" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Phone" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.PhoneNumber" AllowClear="true" Placeholder="Phone" Name="PhoneNumber"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="PhoneNumber is required" Component="Position" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Position" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.Position" AllowClear="true" Placeholder="Position" Name="Position"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="Position is required" Component="Position" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Department" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.Department" AllowClear="true" Placeholder="Department" Name="Department"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="Department is required" Component="Department" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="StartDate" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenDatePicker @bind-Value="@_empOpen.StartDate" AllowClear="true" Name="StartDate"></RadzenDatePicker>
+                                    <RadzenRequiredValidator Text="StartDate is required" Component="StartDate" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Shift" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.Shift" AllowClear="true" Placeholder="Shift" Name="Shift">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Manager" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.Manager" AllowClear="true" Placeholder="Manager" Name="Manager">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Favorite Color" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empOpen.FavoriteColor" AllowClear="true" Placeholder="Favorite Color" Name="FavoriteColor">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                        </RadzenFieldset>
+                    </div>
+                </div>
+            </RadzenTemplateForm>
+        </div>
+        <MatDialogActions>
+            <MatButton Raised="true" OnClick="@SaveEmployee" Class="mr-3">Save</MatButton>
+            <MatButton Raised="true" @onclick="@(_ => { DialogAddOpen = false; })">Cancel</MatButton>
+        </MatDialogActions>
+    </MatDialogContent>
+</MatDialog>
+
+<MatDialog @bind-IsOpen="@DialogEdit" Class="matdialog-override-max-width">
+    <MatDialogContent>
+        <div class="container-fluid">
+            <RadzenTemplateForm Data="@_empEdit">
+                <div class="row">
+                    <div class="col-md-12">
+                        <RadzenFieldset Text="Edit Employee Info">
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="First Name" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.FirstName" AllowClear="true" Placeholder="First Name" Name="FirstName"></RadzenTextBox>
+                                    <RadzenRequiredValidator Component="FirstName" Text="First name is required" Popup="true" Style="position: absolute" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Last Name" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.LastName" AllowClear="true" Placeholder="Last Name" Name="LastName"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="LastName is required" Component="LastName" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Email" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.EmailAddress" AllowClear="true" Placeholder="Email" Name="EmailAddress"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="Email is required" Component="Email" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Phone" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.PhoneNumber" AllowClear="true" Placeholder="Phone" Name="PhoneNumber"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="PhoneNumber is required" Component="Position" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Position" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.Position" AllowClear="true" Placeholder="Position" Name="Position"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="Position is required" Component="Position" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Department" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.Department" AllowClear="true" Placeholder="Department" Name="Department"></RadzenTextBox>
+                                    <RadzenRequiredValidator Text="Department is required" Component="Department" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="StartDate" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenDatePicker @bind-Value="@_empEdit.StartDate" AllowClear="true" Name="StartDate"></RadzenDatePicker>
+                                    <RadzenRequiredValidator Text="StartDate is required" Component="StartDate" Popup="true" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Shift" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.Shift" AllowClear="true" Placeholder="Shift" Name="Shift">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Manager" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.Manager" AllowClear="true" Placeholder="Manager" Name="Manager">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Favorite Color" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenTextBox @bind-Value="@_empEdit.FavoriteColor" AllowClear="true" Placeholder="Favorite Color" Name="FavoriteColor">
+                                    </RadzenTextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 align-items-center d-flex">
+                                    <RadzenLabel Text="Termination Date" />
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenDatePicker @bind-Value="@_empEdit.TerminationDate" AllowClear="true" Name="Termination Date"></RadzenDatePicker>
+                                </div>
+                            </div>
+                        </RadzenFieldset>
+                    </div>
+                </div>
+            </RadzenTemplateForm>
+        </div>
+        <MatDialogActions>
+            <MatButton Raised="true" OnClick="@UpdateEmployee" Class="mr-3">Update</MatButton>
+            <MatButton Raised="true" OnClick="@(_ => { DialogEdit = false; })">Cancel</MatButton>
+        </MatDialogActions>
+    </MatDialogContent>
+</MatDialog>
+
+<MatDialog @bind-IsOpen="@DialogReportOpen" Class="matdialog-override-max-width">
+    <MatDialogContent>
+        <div class="container-fluid">
+            <h3>Reporting Page</h3>
+            <h4 style="background-color: yellow;">Number of Employees Hired(Week) = @_hiredEmp</h4><br />
+            <h4 style="background-color: yellow;">Number of Employees Terminated(Current Year) = @_terminatedEmp</h4>
+        </div>
+        <MatDialogActions>
+            <MatButton Raised="true" OnClick="@(_ => { DialogReportOpen = false; })">Cancel</MatButton>
+        </MatDialogActions>
+    </MatDialogContent>
+</MatDialog>
+
+@code {
+
+    public RadzenGrid<EmpService> EmpGrid;
+    IEnumerable<EmpService> _empModel;
+    IList<EmpService> _employees;
+    readonly EmpService _empOpen = new EmpService();
+    EmpService _empEdit = new();
+    List<string> _hiredNumber;
+    List<string> _terminatedNumber;
+    string _hiredEmp;
+    string _terminatedEmp;
+
+    public List<string> EmployeeStatus = new List<string>();
+
+    public bool DialogAddOpen, DialogEdit, DialogReportOpen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        EmployeeStatus.Add("Active");
+        EmployeeStatus.Add("Inactive");
+
+        _empModel = await EmpServiceRepo.GetEmployeeAsync();
+        _employees = _empModel.ToList();
+
+        _hiredNumber = await EmpServiceRepo.ReportHiredEmployeeAsync();
+        _terminatedNumber = await EmpServiceRepo.ReportTerminatedEmployeeAsync();
+        _hiredEmp = string.Join(", ", _hiredNumber);
+        _terminatedEmp = string.Join(", ", _terminatedNumber);
+    }
+
+    public async void SaveEmployee()
+    {
+        bool isValid = EmpServiceRepo.AddEmployee(_empOpen);
+        if (isValid)
+        {
+            DialogAddOpen = false;
+            _empModel = await EmpServiceRepo.GetEmployeeAsync();
+            _employees = _empModel.ToList();
+            await EmpGrid.Reload();
+            ShowToast(MatToastType.Success, "Success", $"Employee Added Successfully");
+        }
+        else
+        {
+            ShowToast(MatToastType.Danger, "Error", $"Error Adding Employee");
+        }
+    }
+    public async void UpdateEmployee()
+    {
+
+        bool isValid = EmpServiceRepo.UpdateEmployee(_empEdit);
+        if (isValid)
+        {
+            DialogEdit = false;
+            await EmpGrid.Reload();
+            ShowToast(MatToastType.Success, "Success", "Employee Added Successfully");
+            _empModel = await EmpServiceRepo.GetEmployeeAsync();
+            _employees = _empModel.ToList();
+        }
+        else
+        {
+            ShowToast(MatToastType.Danger, "Error", "Error Adding Employee");
+        }
+
+    }
+    public void EditRow(EmpService emp)
+    {
+        _empEdit = emp;
+        DialogEdit = true;
+    }
+
+    public void CancelEdit(EmpService emp)
+    {
+        EmpGrid.CancelEditRow(emp);
+    }
+    public async void DeleteRow(EmpService emp)
+    {
+        if (_employees.Contains(emp))
+        {
+            _employees.Remove(emp);
+            await EmpServiceRepo.DeleteEmployeeAsync(emp.EmpId);
+            await EmpGrid.Reload();
+        }
+        else
+        {
+            EmpGrid.CancelEditRow(emp);
+        }
+
+    }
+
+    private void ShowToast(MatToastType type, string toastTitle, string toastMessage, string icon = "")
+    {
+        Toaster.Add(toastMessage, type, toastTitle, icon, config =>
+        {
+            config.ShowCloseButton = true;
+            config.ShowProgressBar = true;
+            config.MaximumOpacity = 100;
+        });
+    }
+
+    public int Count { get; private set; }
+
+    //async Task LoadData(LoadDataArgs args)
+    //{
+    //    var query = await EmpServiceRepo.GetEmployeeAsync();
+
+    //    _empModel = query.AsEnumerable();
+
+    //    Count = _empModel.Count();
+
+    //    await InvokeAsync(StateHasChanged);
+    //}
+}

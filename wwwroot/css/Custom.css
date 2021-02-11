@@ -1,0 +1,202 @@
+﻿.scrollable-menu {
+    height: auto;
+    max-height: 180px;
+    overflow-x: hidden;
+    clear: both;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
+
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
+    /*color: orange;*/
+    /*background-color: orange;*/
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+    text-decoration: underline;
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*Also you can set margin*/
+
+.navbar-nav > li {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: lightsalmon;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    width: 15px;
+    border: none;
+    background: transparent;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: lightsalmon;
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+    }
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+    .form-control-dark:focus {
+        border-color: transparent;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+
+.navbar-nav {
+    font-size: 1.2rem;
+}
+/* Error CSS */
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#notfound {
+    position: relative;
+    height: 80vh;
+}
+
+    #notfound .notfound {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+.notfound {
+    max-width: 410px;
+    width: 100%;
+    text-align: center;
+}
+
+    .notfound .notfound-404 {
+        height: 280px;
+        position: relative;
+        z-index: -1;
+    }
+
+        .notfound .notfound-404 h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 230px;
+            margin: 0px;
+            font-weight: 900;
+            position: absolute;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            background: url('/Images/bg.jpg') no-repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: cover;
+            background-position: center;
+        }
+
+    .notfound h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 0;
+    }
+
+    .notfound p {
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        margin-top: 0px;
+    }
+
+    .notfound a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        text-transform: uppercase;
+        background: lightsalmon;
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 40px;
+        color: #fff;
+        font-weight: 700;
+        -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
+        box-shadow: 0px 4px 15px -5px #0046d5;
+    }
+
+
+@media only screen and (max-width: 767px) {
+    .notfound .notfound-404 {
+        height: 142px;
+    }
+
+        .notfound .notfound-404 h1 {
+            font-size: 112px;
+        }
+}
+.rz-fieldset-legend-text {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.matdialog-override-max-width.mdc-dialog .mdc-dialog__surface {
+    max-width: 100%;
+    overflow: auto;
+    width: 600px;
+}

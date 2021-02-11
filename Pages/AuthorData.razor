@@ -1,0 +1,124 @@
+﻿@page "/AuthorData"
+<PageTitle Title="AuthorData"></PageTitle>
+@if (_authorModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="AuthorGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_authors" TItem="Author" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="130px" TItem="Author" Property="last_name" Title="Last Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.last_name" Style="width:100%; display: block" Name="last_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="130px" TItem="Author" Property="first_name" Title="First Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.first_name" Style="width:100%; display: block" Name="first_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="150px" TItem="Author" Property="phone" Title="Phone">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.phone" Style="width:100%; display: block" Name="phone" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Author" Property="address" Title="Address">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.address" Style="width:100%; display: block" Name="address" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="150px" TItem="Author" Property="city" Title="City">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.city" Style="width:100%; display: block" Name="city" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="Author" Property="state" Title="State">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.state" Style="width:100%; display: block" Name="state" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Author" Property="zip" Title="ZipCode">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.zip" Style="width:100%; display: block" Name="zip" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Author" Property="email_address" Title="Email">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.email_address" Style="width:100%; display: block" Name="email_address" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Author" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((_) => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Author" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Author> AuthorGrid;
+    IEnumerable<Author> _authorModel;
+    IList<Author> _authors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authorModel = await AuthorRepo.GetAuthorAsync();
+        _authors = _authorModel.ToList();
+    }
+    public async void OnCreateRow(Author author)
+    {
+        await AuthorRepo.AddAuthorAsync(author);
+    }
+    void EditRow(Author author)
+    {
+        AuthorGrid.EditRow(author);
+    }
+    public async void SaveRow(Author author)
+    {
+        await AuthorGrid.UpdateRow(author);
+        await AuthorRepo.UpdateAuthorAsync(author);
+    }
+    void CancelEdit(Author author)
+    {
+        AuthorGrid.CancelEditRow(author);
+    }
+    public async void DeleteRow(Author author)
+    {
+        if (_authors.Contains(author))
+        {
+            _authors.Remove(author);
+            await AuthorRepo.DeleteAuthorAsync(author.author_id);
+            await AuthorGrid.Reload();
+        }
+        else
+        {
+            AuthorGrid.CancelEditRow(author);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await AuthorGrid.InsertRow(new Author());
+    }
+
+}

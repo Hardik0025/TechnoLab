@@ -1,0 +1,127 @@
+﻿@page "/FilmInfo"
+<PageTitle Title="FilmInfo"></PageTitle>
+@if (_filmObj == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="FilmGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_films" TItem="Film" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="300px" TItem="Film" Property="Title" Title="Film Title" CssClass="custom-table-width">
+                <EditTemplate Context="listFilm">
+                    <RadzenTextBox @bind-Value="listFilm.Title" Style="width:100%; display: block" Name="Title" />
+                    <RadzenRequiredValidator Text="Title is required" Component="Title" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="170px" TItem="Film" Property="ReleaseDate" Title="ReleaseDate">
+                <EditTemplate Context="listFilm">
+                    <RadzenDatePicker @bind-Value="listFilm.ReleaseDate" Style="width:100%; display: block" Name="ReleaseDate" />
+                    <RadzenRequiredValidator Text="ReleaseDate is required" Component="ReleaseDate" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="170px" TItem="Film" Property="Review" Title="Review">
+                <EditTemplate Context="listFilm">
+                    <RadzenTextBox @bind-Value="listFilm.Review" Style="width:100%; display: block" Name="Review" />
+                    <RadzenRequiredValidator Text="Review is required" Component="Review" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="90px" TItem="Film" Property="RunTimeMinutes" Title="RunTime">
+                <EditTemplate Context="listFilm">
+                    <RadzenNumeric @bind-Value="listFilm.RunTimeMinutes" Style="width:100%; display: block" Name="RunTimeMinutes" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Film" Property="BudgetDollars" Title="Budget ($)">
+                <EditTemplate Context="listFilm">
+                    <RadzenNumeric @bind-Value="listFilm.BudgetDollars" Style="width:100%; display: block" Name="BudgetDollars" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Film" Property="BoxOfficeDollars" Title="BoxOffice ($)">
+                <EditTemplate Context="listFilm">
+                    <RadzenNumeric @bind-Value="listFilm.BoxOfficeDollars" Style="width:100%; display: block" Name="BoxOfficeDollars" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="140px" TItem="Film" Property="OscarNominations" Title="OscarNominations">
+                <EditTemplate Context="listFilm">
+                    <RadzenNumeric @bind-Value="listFilm.OscarNominations" Style="width:100%; display: block" Name="OscarNominations" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="90px" TItem="Film" Property="OscarWins" Title="OscarWins">
+                <EditTemplate Context="listFilm">
+                    <RadzenNumeric @bind-Value="listFilm.OscarWins" Style="width:100%; display: block" Name="OscarWins" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Film" Context="sampleBlazorModelsSamplelistActor" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="80px">
+                <Template Context="listFilm">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(listFilm))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="listFilm">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(listFilm))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(listFilm))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Film" Context="listFilm" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="listFilm">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(listFilm))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="listFilm">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(listFilm))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Film> FilmGrid;
+    IEnumerable<Film> _filmObj;
+    IList<Film> _films;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _filmObj = await FilmRepo.GetFilmAsync();
+        _films = _filmObj.ToList();
+    }
+
+    public async void OnCreateRow(Film film)
+    {
+        await FilmRepo.AddFilmAsync(film);
+    }
+    void EditRow(Film film)
+    {
+        FilmGrid.EditRow(film);
+    }
+    public async void SaveRow(Film film)
+    {
+        await FilmGrid.UpdateRow(film);
+        await FilmRepo.UpdateFilmAsync(film);
+    }
+    void CancelEdit(Film film)
+    {
+        FilmGrid.CancelEditRow(film);
+    }
+    public async void DeleteRow(Film film)
+    {
+        if (_films.Contains(film))
+        {
+            _films.Remove(film);
+            await FilmRepo.DeleteFilmAsync(film.FilmID);
+            await FilmGrid.Reload();
+        }
+        else
+        {
+            FilmGrid.CancelEditRow(film);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await FilmGrid.InsertRow(new Film());
+    }
+}

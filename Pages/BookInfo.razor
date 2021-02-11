@@ -1,0 +1,137 @@
+﻿@page "/BookInfo"
+<PageTitle Title="BookInfo"></PageTitle>
+@if (_bookModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="BookGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_books" TItem="Book" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="300px" TItem="Book" Property="title" Title="Title">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.title" Style="width:100%; display: block" Name="title" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Book" Property="type" Title="Type">
+                <EditTemplate Context="order">
+                    <RadzenDropDown @bind-Value="order.type" Data="@_bookModel" TextProperty="type" ValueProperty="type" Style="width:100%" />
+                </EditTemplate>
+                @*<EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.type" Style="width:100%; display: block" Name="type" />
+            </EditTemplate>*@
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="80px" TItem="Book" Property="pub_id" Title="Pub_ID">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.pub_id" Style="width:100%; display: block" Name="pub_id" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="90px" TItem="Book" Property="price" Title="Price">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.price" Style="width:100%; display: block" Name="price" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="85px" TItem="Book" Property="advance" Title="Advance">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.advance" Style="width:100%; display: block" Name="advance" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="80px" TItem="Book" Property="royalty" Title="Royalty">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.royalty" Style="width:100%; display: block" Name="royalty" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="95px" TItem="Book" Property="ytd_sales" Title="YTD Sales">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.ytd_sales" Style="width:100%; display: block" Name="ytd_sales" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="200px" TItem="Book" Property="notes" Title="Notes">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.notes" Style="width:100%; display: block" Name="notes" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="200px" TItem="Book" Property="published_date" Title="Date Of Published">
+                <EditTemplate Context="order">
+                    <RadzenDatePicker @bind-Value="order.published_date" Style="width:100%" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Book" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="80px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((_) => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((_) => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Book" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Book" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="_">
+                    <RadzenLink Text="Select" Path="// + {Id}">
+                    </RadzenLink>
+                </Template>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Book> BookGrid;
+    IEnumerable<Book> _bookModel;
+    IList<Book> _books;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _bookModel = await BookRepo.GetBookAsync();
+        _books = _bookModel.ToList();
+    }
+    public async void OnCreateRow(Book book)
+    {
+        await BookRepo.AddBookAsync(book);
+    }
+    void EditRow(Book book)
+    {
+        BookGrid.EditRow(book);
+    }
+    public async void SaveRow(Book book)
+    {
+        await BookGrid.UpdateRow(book);
+        await BookRepo.UpdateBookAsync(book);
+    }
+    void CancelEdit(Book book)
+    {
+        BookGrid.CancelEditRow(book);
+    }
+    public async void DeleteRow(Book book)
+    {
+        if (_books.Contains(book))
+        {
+            _books.Remove(book);
+            await BookRepo.DeleteBookAsync(book.book_id);
+            await BookGrid.Reload();
+        }
+        else
+        {
+            BookGrid.CancelEditRow(book);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await BookGrid.InsertRow(new Book());
+    }
+}

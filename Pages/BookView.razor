@@ -1,0 +1,34 @@
+﻿@page "/BookView"
+@using Radzen
+<h3>BookView</h3>
+<PageTitle Title="BookView"></PageTitle>
+@if (_bookPublishers == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenGrid AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_bookPublishers" TItem="BookPublisher">
+        <Columns>
+            <RadzenGridColumn TItem="BookPublisher" Property="book_id" Title="BookID" Width="50px"/>
+            <RadzenGridColumn TItem="BookPublisher" Property="title" Title="Book Title" Width="150px"/>
+            <RadzenGridColumn TItem="BookPublisher" Property="type" Title="Book Type" Width="70px"/>
+            <RadzenGridColumn TItem="BookPublisher" Property="price" Title="Book Price" Width="80px"/>
+            
+            <RadzenGridColumn TItem="BookPublisher" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="80px">
+                <Template Context="data">
+                    <RadzenLink Path=@($"/BookDetails?book_id={data.book_id}") Text="Select" Target="_blank"></RadzenLink>
+                </Template>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    IEnumerable<BookPublisher> _bookPublishers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _bookPublishers = await InfoBookById.GetDataBookAsync();
+    }
+}

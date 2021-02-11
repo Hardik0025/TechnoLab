@@ -1,0 +1,15 @@
+﻿@inject IJSRuntime _jsRuntime
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    bool firstRender = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _jsRuntime.InvokeVoidAsync("BlazorTitle.setDocumentTitle", Title);
+        }
+    }
+}
