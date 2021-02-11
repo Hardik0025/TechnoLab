@@ -1,0 +1,58 @@
+﻿@page "/OrderCustomer"
+<PageTitle Title="OrderCustomer"></PageTitle>
+<h3>OrderCustomer</h3>
+@if (_details == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+<RadzenGrid AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single" Data="_details" TItem="CustomersDetails">
+    <Columns>
+        <RadzenGridColumn Width="130px" TItem="CustomersDetails" Property="CompanyName" Title="Company Name">
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.CompanyName" Style="width:100%; display: block" Name="CompanyName" />
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="100px" TItem="CustomersDetails" Property="ContactName" Title="Contact Name">
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.ContactName" Style="width:100%; display: block" Name="ContactName" />
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="100px" TItem="CustomersDetails" Property="ContactTitle" Title="Contact Title">
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.ContactTitle" Style="width:100%; display: block" Name="ContactName" />
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="150px" TItem="CustomersDetails" Property="Address" Title="Address" >
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.Address" Name="Address" Style="width:100%; display: block"/>
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="80px" TItem="CustomersDetails" Property="City" Title="City">
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.City" Style="width:100%; display: block" Name="City" />
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="100px" TItem="CustomersDetails" Property="Order.ShippedDate" Title="Shipped Date">
+            <EditTemplate Context="order">
+                <RadzenDatePicker @bind-Value="order.Order.ShippedDate" Style="width:100%; display: block" Name="ShippedDate" />
+            </EditTemplate>
+        </RadzenGridColumn>
+        <RadzenGridColumn Width="120px" TItem="CustomersDetails" Property="Order.ShipName" Title="Ship Name">
+            <EditTemplate Context="order">
+                <RadzenTextBox @bind-Value="order.Order.ShipName" Style="width:100%; display: block" Name="ShipName" />
+            </EditTemplate>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+}
+
+@code {
+    IEnumerable<CustomersDetails> _details;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _details = await CustomerOrderRepo.GetOrderDetailsAsync();
+    }
+}

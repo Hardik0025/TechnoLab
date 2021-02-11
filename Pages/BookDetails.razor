@@ -1,0 +1,76 @@
+﻿@page "/BookDetails"
+@inject NavigationManager NavManager
+<h3>BookDetails</h3>
+<PageTitle Title="BookDetails"></PageTitle>
+@if (_publisherBook == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenTemplateForm Data="@_publisherBook">
+        <div class="row">
+            <div class="col-md-12">
+                <RadzenFieldset Text="Book Details">
+                    <div class="row">
+                        <div class="col-md-4 align-items-center d-flex">
+                            <RadzenLabel Text="Publisher Name" />
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <RadzenTextBox Disabled="true" style="width: 100%;" @bind-Value="_publisherBook.publisher_name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 align-items-center d-flex">
+                            <RadzenLabel Text="Published Date" />
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <RadzenDatePicker Disabled="true" style="width: 100%;" @bind-Value="_publisherBook.published_date" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 align-items-center d-flex">
+                            <RadzenLabel Text="City" />
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <RadzenTextBox Disabled="true" style="width: 100%;" @bind-Value="_publisherBook.city" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 align-items-center d-flex">
+                            <RadzenLabel Text="State" />
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <RadzenTextBox Disabled="true" style="width: 100%;" @bind-Value="_publisherBook.state" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 align-items-center d-flex">
+                            <RadzenLabel Text="Country" />
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <RadzenTextBox Disabled="true" style="width: 100%;" @bind-Value="_publisherBook.country" />
+                        </div>
+                    </div>
+                </RadzenFieldset>
+            </div>
+        </div>
+    </RadzenTemplateForm>
+}
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    BookPublisher _publisherBook = new BookPublisher();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Uri uri = new Uri(NavManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("book_id", out var id))
+        {
+            Id = id;
+
+        }
+        _publisherBook = await InfoBookById.GetInfoByBookAsync(Id, _publisherBook.pub_id);
+    }
+}

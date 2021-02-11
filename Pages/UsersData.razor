@@ -1,0 +1,130 @@
+﻿@page "/UsersData"
+<PageTitle Title="UserData"></PageTitle>
+<h3>UsersData</h3>
+@if (_userModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px;" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="UserGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_users" TItem="User" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="150px" TItem="User" Property="email_address" Title="Email">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.email_address" Style="width:100%; display: block" Name="email_address" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            @*<RadzenGridColumn Width="120px" TItem="User" Property="password" Title="Password">
+                    <EditTemplate Context="order">
+                        <RadzenTextBox @bind-Value="order.password" Style="width:100%; display: block" Name="password" />
+                    </EditTemplate>
+                </RadzenGridColumn>*@
+            <RadzenGridColumn Width="80px" TItem="User" Property="source" Title="Source">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.source" Style="width:100%; display: block" Name="source" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="90px" TItem="User" Property="first_name" Title="First Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.first_name" Style="width:100%; display: block" Name="first_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            @*<RadzenGridColumn Width="85px" TItem="User" Property="middle_name" Title="Middle Initial">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.middle_name" MaxLength="1" Style="width:100%; display: block" Name="middle_name" />
+                </EditTemplate>
+            </RadzenGridColumn>*@
+            <RadzenGridColumn Width="80px" TItem="User" Property="last_name" Title="Last Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.last_name" Style="width:100%; display: block" Name="last_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="45px" TItem="User" Property="role_id" Title="Role ID">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.role_id" Style="width:100%; display: block" Name="role_id" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="55px" TItem="User" Property="pub_id" Title="Publication ID">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.pub_id" Style="width:100%; display: block" Name="pub_id" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="User" Property="hire_date" Title="Date Of Hire">
+                <EditTemplate Context="order">
+                    <RadzenDatePicker @bind-Value="order.hire_date" Style="width:100%" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="User" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="User" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<User> UserGrid;
+    IEnumerable<User> _userModel;
+    IList<User> _users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _userModel = await UserRepo.GetUserAsync();
+        _users = _userModel.ToList();
+    }
+    public async void OnCreateRow(User user)
+    {
+        await UserRepo.AddUserAsync(user);
+    }
+    public async void EditRow(User user)
+    {
+        await UserGrid.EditRow(user);
+    }
+    public async void SaveRow(User user)
+    {
+        await UserGrid.UpdateRow(user);
+        await UserRepo.UpdateUserAsync(user);
+    }
+    public void CancelEdit(User user)
+    {
+        UserGrid.CancelEditRow(user);
+    }
+
+    public async void DeleteRow(User user)
+    {
+        if (_users.Contains(user))
+        {
+            _users.Remove(user);
+            await UserRepo.DeleteUserAsync(user.user_id);
+            await UserGrid.Reload();
+        }
+        else
+        {
+            UserGrid.CancelEditRow(user);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await UserGrid.InsertRow(new User());
+    }
+}

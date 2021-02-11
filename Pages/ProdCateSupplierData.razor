@@ -1,0 +1,159 @@
+﻿@page "/ProdCateSupplierData"
+<h3>ProdCateSupplierData</h3>
+<PageTitle Title="Products Data"></PageTitle>
+@if (_products == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenGrid @ref="ProGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single" Data="_products" TItem="Products" ColumnWidth="200px" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="250px" TItem="Products" Property="Supplier.CompanyName" Title="Company Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Supplier.CompanyName" Style="width:100%; display: block" Name="Supplier.CompanyName" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="180px" TItem="Products" Property="Supplier.ContactName" Title="Contact Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Supplier.ContactName" Style="width:100%; display: block" Name="Supplier.ContactName" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="200px" TItem="Products" Property="Supplier.ContactTitle" Title="Contact Title">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Supplier.ContactTitle" Style="width:100%; display: block" Name="Supplier.ContactTitle" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="250px" TItem="Products" Property="Supplier.Address" Title="Address">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Supplier.Address" Name="Supplier.Address" Style="width:100%; display: block" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="130px" TItem="Products" Property="Supplier.City" Title="City">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Supplier.City" Style="width:100%; display: block" Name="Supplier.City" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="Products" Property="Supplier.Country" Title="Country">
+                <EditTemplate Context="order">
+                    <RadzenDatePicker @bind-Value="order.Supplier.Country" Style="width:100%; display: block" Name="Supplier.Country" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="230px" TItem="Products" Property="ProductName" Title="Product Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.ProductName" Style="width:100%; display: block" Name="ProductName" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="140px" TItem="Products" Property="QuantityPerUnit" Title="QuantityPerUnit">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.QuantityPerUnit" Style="width:100%; display: block" Name="Quantity" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="Products" Property="UnitPrice" Title="Price">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.UnitPrice" Style="width:100%; display: block" Name="UnitPrice" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="Products" Property="UnitsInStock" Title="InStock">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.UnitsInStock" Name="UnitsInStock" Style="width:100%; display: block" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="100px" TItem="Products" Property="UnitsOnOrder" Title="OnOrder">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.UnitsOnOrder" Name="UnitsOnOrder" Style="width:100%; display: block" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="130px" TItem="Products" Property="ReorderLevel" Title="Reorder Level">
+                <EditTemplate Context="order">
+                    <RadzenDatePicker @bind-Value="order.ReorderLevel" Style="width:100%; display: block" Name="ReorderLevel" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Products" Property="Discontinued" Title="Discontinued">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.Discontinued" Style="width:100%; display: block" Name="ShipName" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="130px" TItem="Products" Property="Category.CategoryName" Title="Category Name">
+                <EditTemplate Context="order">
+                    <RadzenDatePicker @bind-Value="order.Category.CategoryName" Style="width:100%; display: block" Name="Category.CategoryName" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="350px" TItem="Products" Property="Category.Description" Title="Description">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Category.Description" Style="width:100%; display: block" Name="Category.Description" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Products" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Products" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Products> ProGrid;
+    List<Products> _products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _products = await ProdCateSupplierRepo.GetProductDetailsAsync();
+    }
+
+    void EditRow(Products product)
+    {
+        ProGrid.EditRow(product);
+    }
+    public async void SaveRow(Products product)
+    {
+        await ProGrid.UpdateRow(product);
+
+        await ProdCateSupplierRepo.UpdateProductAsync(product);
+    }
+    void CancelEdit(Products product)
+    {
+        ProGrid.CancelEditRow(product);
+    }
+    public async void DeleteRow(Products product)
+    {
+        if (_products.Contains(product))
+        {
+            _products.Remove(product);
+            await ProdCateSupplierRepo.DeleteProductAsync(product.ProductID, product.Category.CategoryID, product.Supplier.SupplierID, product.OrderDetail.OrderID);
+            await ProGrid.Reload();
+        }
+        else
+        {
+            ProGrid.CancelEditRow(product);
+        }
+
+    }
+
+    public async void OnCreateRow(Products product)
+    {
+        await ProdCateSupplierRepo.AddProductsAsync(product);
+    }
+
+    public async void InsertRow()
+    {
+        await ProGrid.InsertRow(new Products());
+    }
+}

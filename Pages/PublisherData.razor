@@ -1,0 +1,104 @@
+﻿@page "/PublisherData"
+<PageTitle Title="PublisherData"></PageTitle>
+@if (_publisherModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="PublisherGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_publishers" TItem="PublisherInfo" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn TItem="PublisherInfo" Property="publisher_name" Title="Publisher Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.publisher_name" Style="width:100%; display: block" Name="publisher_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PublisherInfo" Property="city" Title="City">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.city" Style="width:100%; display: block" Name="city" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PublisherInfo" Property="state" Title="State">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.state" Style="width:100%; display: block" Name="state" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PublisherInfo" Property="country" Title="Country">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.country" Style="width:100%; display: block" Name="country" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PublisherInfo" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PublisherInfo" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<PublisherInfo> PublisherGrid;
+    IEnumerable<PublisherInfo> _publisherModel;
+    IList<PublisherInfo> _publishers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _publisherModel = await PublisherRepo.GetPublisherAsync();
+        _publishers = _publisherModel.ToList();
+    }
+
+    public async void OnCreateRow(PublisherInfo publisher)
+    {
+        await PublisherRepo.AddPublisherAsync(publisher);
+    }
+    void EditRow(PublisherInfo publisher)
+    {
+        PublisherGrid.EditRow(publisher);
+    }
+    public async void SaveRow(PublisherInfo publisher)
+    {
+        await PublisherGrid.UpdateRow(publisher);
+        await PublisherRepo.UpdatePublisherAsync(publisher);
+    }
+    void CancelEdit(PublisherInfo publisher)
+    {
+        PublisherGrid.CancelEditRow(publisher);
+    }
+    public async void DeleteRow(PublisherInfo publisher)
+    {
+        if (_publishers.Contains(publisher))
+        {
+            _publishers.Remove(publisher);
+            await PublisherRepo.DeletePublisherAsync(publisher.pub_id);
+            await PublisherGrid.Reload();
+        }
+        else
+        {
+            PublisherGrid.CancelEditRow(publisher);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await PublisherGrid.InsertRow(new PublisherInfo());
+    }
+}

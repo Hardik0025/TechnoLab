@@ -1,0 +1,108 @@
+﻿@page "/StoreInfo"
+<PageTitle Title="StoreInfo"></PageTitle>
+@if (_storeModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="StoreGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_stores" TItem="Store" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn Width="150px" TItem="Store" Property="store_name" Title="Store Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.store_name" Style="width:100%; display: block" Name="store_name" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="120px" TItem="Store" Property="store_address" Title="Store Address">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.store_address" Style="width:100%; display: block" Name="store_address" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="80px" TItem="Store" Property="city" Title="City">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.city" Style="width:100%; display: block" Name="city" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="90px" TItem="Store" Property="state" Title="State">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.state" Style="width:100%; display: block" Name="state" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn Width="85px" TItem="Store" Property="zip" Title="Zip Code">
+                <EditTemplate Context="order">
+                    <RadzenNumeric @bind-Value="order.zip" Style="width:100%; display: block" Name="zip" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Store" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Store" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="50px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Store> StoreGrid;
+    IEnumerable<Store> _storeModel;
+    IList<Store> _stores;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _storeModel = await StoreRepo.GetStoreAsync();
+        _stores = _storeModel.ToList();
+    }
+    public async void OnCreateRow(Store store)
+    {
+        await StoreRepo.AddStoreAsync(store);
+    }
+    void EditRow(Store store)
+    {
+        StoreGrid.EditRow(store);
+    }
+    public async void SaveRow(Store store)
+    {
+        await StoreGrid.UpdateRow(store);
+        await StoreRepo.UpdateStoreAsync(store);
+    }
+    void CancelEdit(Store store)
+    {
+        StoreGrid.CancelEditRow(store);
+    }
+    public async void DeleteRow(Store store)
+    {
+        if (_stores.Contains(store))
+        {
+            _stores.Remove(store);
+            await StoreRepo.DeleteStoreAsync(store.store_id);
+            await StoreGrid.Reload();
+        }
+        else
+        {
+            StoreGrid.CancelEditRow(store);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await StoreGrid.InsertRow(new Store());
+    }
+}

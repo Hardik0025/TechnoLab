@@ -1,0 +1,112 @@
+﻿@page "/DirectorInfo"
+<PageTitle Title="DirectorInfo"></PageTitle>
+@if (_directorModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />
+    <RadzenGrid @ref="DirectorGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_directors" TItem="Director" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn TItem="Director" Property="FirstName" Title="First Name" CssClass="custom-table-width">
+                <EditTemplate Context="listActor">
+                    <RadzenTextBox @bind-Value="listActor.FirstName" Style="width:100%; display: block" Name="FirstName" />
+                    <RadzenRequiredValidator Text="FirstName is required" Component="FirstName" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Property="FamilyName" Title="Family Name">
+                <EditTemplate Context="listActor">
+                    <RadzenTextBox @bind-Value="listActor.FamilyName" Style="width:100%; display: block" Name="FamilyName" />
+                    <RadzenRequiredValidator Text="FamilyName is required" Component="FamilyName" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Property="DoB" Title="Date Of Birth">
+                <EditTemplate Context="listActor">
+                    <RadzenDatePicker @bind-Value="listActor.DoB" Style="width:100%" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Property="DoD" Title="Date Of Debut">
+                <EditTemplate Context="listActor">
+                    <RadzenDatePicker @bind-Value="listActor.DoD" Style="width:100%" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Property="Gender" Title="Gender">
+                <EditTemplate Context="listActor">
+                    <RadzenTextBox @bind-Value="listActor.Gender" Style="width:100%; display: block" Name="Gender" />
+                    <RadzenRequiredValidator Text="Gender is required" Component="Gender" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Context="sampleBlazorModelsSamplelistActor" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="listActor">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(listActor))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="listActor">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((_) => SaveRow(listActor))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((_) => CancelEdit(listActor))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Director" Context="listActor" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <Template Context="listActor">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(listActor))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="listActor">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(listActor))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+@code {
+    public RadzenGrid<Director> DirectorGrid;
+    IEnumerable<Director> _directorModel;
+    IList<Director> _directors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _directorModel = await DirectorRepo.GetDirectorAsync();
+        _directors = _directorModel.ToList();
+    }
+
+    public async void OnCreateRow(Director director)
+    {
+        await DirectorRepo.AddDirectorAsync(director);
+    }
+    void EditRow(Director director)
+    {
+        DirectorGrid.EditRow(director);
+    }
+    public async void SaveRow(Director director)
+    {
+        await DirectorGrid.UpdateRow(director);
+        await DirectorRepo.UpdateDirectorAsync(director);
+    }
+    void CancelEdit(Director director)
+    {
+        DirectorGrid.CancelEditRow(director);
+    }
+    public async void DeleteRow(Director director)
+    {
+        if (_directors.Contains(director))
+        {
+            _directors.Remove(director);
+            await DirectorRepo.DeleteDirectorAsync(director.DirectorID);
+            await DirectorGrid.Reload();
+        }
+        else
+        {
+            DirectorGrid.CancelEditRow(director);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await DirectorGrid.InsertRow(new Director());
+    }
+}

@@ -1,0 +1,138 @@
+﻿@page "/EmployeeList"
+@inject IMatToaster Toaster
+
+<PageTitle Title="EmployeeList"></PageTitle>
+@if (_empModel == null)
+{
+    <p><em><RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="margin-bottom: 5px;height:5px;" /></em></p>
+}
+else
+{
+    <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow"></RadzenButton>
+    <RadzenGrid @ref="EmpGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single"
+                Data="@_employees" TItem="EmployeeInfo" RowCreate="@OnCreateRow">
+        <Columns>
+            <RadzenGridColumn TItem="EmployeeInfo" Property="Name" Title="Employee Name">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Name" Style="width:100%; display: block" Name="Name" />
+                    <RadzenRequiredValidator Text="Name is required" Component="Name" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmployeeInfo" Property="Department" Title="Department">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Department" Style="width:100%; display: block" Name="Department" />
+                    <RadzenRequiredValidator Text="Department is required" Component="Department" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmployeeInfo" Property="Designation" Title="Designation">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Designation" Style="width:100%; display: block" Name="Designation" />
+                    <RadzenRequiredValidator Text="Designation is required" Component="Designation" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmployeeInfo" Property="Company" Title="Company">
+                <EditTemplate Context="order">
+                    <RadzenTextBox @bind-Value="order.Company" Style="width:100%; display: block" Name="Company" />
+                    <RadzenRequiredValidator Text="Company is required" Component="Company" Popup="true" />
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmployeeInfo" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="order">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(_ => EditRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@(_ => SaveRow(order))">
+                    </RadzenButton>
+                    <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@(_ => CancelEdit(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="EmployeeInfo" Context="order" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <Template Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </Template>
+                <EditTemplate Context="order">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@(_ => DeleteRow(order))">
+                    </RadzenButton>
+                </EditTemplate>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+
+@code {
+    public RadzenGrid<EmployeeInfo> EmpGrid;
+    IEnumerable<EmployeeInfo> _empModel;
+    IList<EmployeeInfo> _employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _empModel = await EmployeeRepo.GetEmployeeAsync();
+        _employees = _empModel.ToList();
+    }
+    public async void OnCreateRow(EmployeeInfo emp)
+    {
+        try
+        {
+            await EmployeeRepo.AddEmployeeAsync(emp);
+        }
+        catch (Exception e)
+        {
+            ShowToast(MatToastType.Danger,"Error",$"Failed Adding Data {e.Message} ");
+        }
+        await EmpGrid.Reload();
+        ShowToast(MatToastType.Success,"Success","Employee Added Successfully");
+
+    }
+    void EditRow(EmployeeInfo emp)
+    {
+        EmpGrid.EditRow(emp);
+    }
+    public async void SaveRow(EmployeeInfo emp)
+    {
+        try
+        {
+            await EmployeeRepo.UpdateEmployeeAsync(emp);
+        }
+        catch (Exception e)
+        {
+            ShowToast(MatToastType.Danger,"Error",$"Failed Updateing Employee {e.Message}");
+        }
+        await EmpGrid.UpdateRow(emp);
+        ShowToast(MatToastType.Success,"Success",$"Employee Updated Successfully");
+    }
+    void CancelEdit(EmployeeInfo emp)
+    {
+        EmpGrid.CancelEditRow(emp);
+    }
+    public async void DeleteRow(EmployeeInfo emp)
+    {
+        if (_employees.Contains(emp))
+        {
+            _employees.Remove(emp);
+            await EmployeeRepo.DeleteEmployeeAsync(emp.Id);
+            await EmpGrid.Reload();
+        }
+        else
+        {
+            EmpGrid.CancelEditRow(emp);
+        }
+
+    }
+    public async void InsertRow()
+    {
+        await EmpGrid.InsertRow(new EmployeeInfo());
+    }
+
+    private void ShowToast(MatToastType type, string toastTitle, string toastMessage, string icon = "")
+    {
+        Toaster.Add(toastMessage, type, toastTitle, icon, config =>
+        {
+            config.ShowCloseButton = true;
+            config.ShowProgressBar = true;
+            config.MaximumOpacity = 100;
+        });
+    }
+}
