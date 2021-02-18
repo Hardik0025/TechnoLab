@@ -1,535 +1,541 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-md navbar-expand-sm navbar-expand-xl col-md-12 ml-sm-auto col-lg-12 px-md-4">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <NavLink class="navbar-brand" href="" Match="NavLinkMatch.All"> <img src="Images/Logo.png" style="height:30px; width: 30px;" /> Hardik Patel</NavLink>
-        <ul class="navbar-nav">
-            <!-- Home -->
-            <li class="nav-item active">
-                <NavLink class="nav-link" href="ListCustomer">Home</NavLink>
-            </li>
-            <!-- Sales -->
-            <li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkSales" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales</NavLink>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSales">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeCustomer">Customer</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="actorlist">Actor Data</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="employeelist">Employee Data</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="filminfo">Film Information</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="directorinfo">Director Data</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="authordata">Author Data</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="publisherdata">Publisher Data</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePedigree" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ePedigree</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="storeinfo">Store Info</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="usersdata">User Data</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkInventory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="bookPublisherInfo">BookPublisher Info</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="bookinfo">Book Info</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="bookview">Book Receipt</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="ordercustomer">Order Customer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="empserviceinfo">Emp Service Info</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="prodcatesupplierdata">Product Data</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Inventory</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Inventory Beta</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Short Date Closeout</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
-                        <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><NavLink class="dropdown-item" href="#">Door Camera</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">EDI Item Cross Reference</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price File Export</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Time In Transit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Tracking</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Website Customer Searches</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Shopko Order Release</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">New Account App</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">New Account App</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Order Conformation Sheet</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Analysis Survey</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Website Fax Sheet.aspx</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Formulary</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Quick Order</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Contract Viewer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Buyer Codes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Goldmine Keys</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price File Maintenance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">New Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">MGT Team</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">RSW Crystal</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Phone Summary Team</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Phone Summary Live</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Dashboard 2</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Niagara Training</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Warehouse Tour</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Controls Formulary</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">While Away</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">While Away</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Catalog</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Over 5k Credit Request App</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Marketing Resources</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bid Submission</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <!-- Management -->
-            <!--<li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkManagement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Management
-                </NavLink>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSales">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeAccountReceivable">Account Receivable</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">AR Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Backorder Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Credit Limit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Next Customer Utility</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Credit Limit Risk Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Maintenance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">AR Utilities</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Validation</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">New Account MGMT</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Invoice Management</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Block Web Payment</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkContracts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contracts</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Contract Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Contract View</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkControls" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Controls</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">C2 Reprint</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeFinancial" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Financial</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Company Snapshot</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Gross To Net By Item</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Gross To Net By Vendor</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Year Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">GP Spread Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">MTD Flash</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Chargeback Dashboard</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeGoldmine" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Goldmine</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Goldmine Prospect Search.aspx</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Hayes List</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Territory Owner Change</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Territory Realignment</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeGPO" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GPO</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">GPO Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Trxade Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">GPO Dashboard</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeHR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HR</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Employee PTO</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Employees</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bonus Management</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeInventory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Item Category</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Limit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Lost Serial View</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Overrides by Customer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Sales Info</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Trend</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Not Purchased - Price File</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">ShortDate Closeout</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Creation</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkOrders" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orders</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Missing Orders Dashboard</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePricing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pricing</NavLink>
-                        <ul class="dropdown-menu scrollable-menu">
-                            <li><NavLink class="dropdown-item" href="#">Competitive Scans</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Pricing</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">GP Red Light</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price Matrix</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price Collection</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price File Update</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price File Comparison</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Price File Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bid Process</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Avg Sale Price Div</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Price Transfer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bid Screen</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pricing Research</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Clear Pricing</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pricing Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pricing Research Transfer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pricing Counters</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Lost Sales</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">PricingDash_V3</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePurchasing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchasing</NavLink>
-                        <ul class="dropdown-menu scrollable-menu">
-                            <li><NavLink class="dropdown-item" href="#">Realignment</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Debit Memo</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Demand</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Realignment V2</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Dead Net Changes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">OptiSource Item Validation</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Price Update Validation</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Inventory Maintenance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">REMS Items</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">OptiSource Files</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">OptiSource Not Reviewed</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">PO Release</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">ASN Variance</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales Analysis</NavLink>
-                        <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><NavLink class="dropdown-item" href="#">Invoice Profit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Invoice Profit With Freight</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Inv Profit With Freight by Customer</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">MGT</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Milestone</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Order Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Phone Summary</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Budget Chart</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales order Profit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">True Invoice Profit</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">SalesComparison - MGT</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Monthly Sales Overview</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Metrics</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customers Not Ordering</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">GP Products Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Average DDays To Pay</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Orders Tiers</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Freight Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales History Overview</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Retail Gauges</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Cost Profit Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">RSW Crystal</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales YTD Map</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Hayes State Map</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pricing Export</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">RSG Sales Order</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Invoice With Freight</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Phone Search</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">RSG Team Management</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Fake Demand</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Days Not Worked</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">QA Score Card</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesMgmt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
-                        <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><NavLink class="dropdown-item" href="#">Account Realignment</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Cart Login</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Commissions</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Company Budget</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Quota</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Drug Type Blocking</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Manual Freight Update</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">News Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">PO News Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Promotion Stats</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Salesperson Budget</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">UDF History Maint</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Update Days Remaining</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pay Periods</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Active PO Invoice Batches</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">MergeCandidate.aspx</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Commission Management</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Promo Codes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Controls Survey Review</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Back Order Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Return Analysis</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Edit Enrollment</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Late Shift Closing</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Rep Allocations</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CSG Auto-Release</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CSG EDI Enrollment</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Blanket Po Entry</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>-->
-            <!-- Warehouse -->
-            <!--<li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkWarehouse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Warehouse
-                </NavLink>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkManagementWarehouse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Expire Dates</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Freight Errors</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item lot Serial View</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Maint</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Lot Inquiry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Outside Cameras</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Physical Count Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Physical Count Admin</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Transfer - Bins</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Transfer - Cross Warehouse</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Return</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">PhysicalCountAdminConsolidate</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Physical Count Admin Consolidate</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPutaway" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Put Away</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Put Away</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Inquiry - Put Away</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">RMA Put Away</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Put Away Consolidate</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Mispick Put Away</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkReceiving" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Receiving</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Receipt of Goods</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Receipt Posting Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Receipt Dashboard MutliBin</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Receipt of Goods MutliBin</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bin Label Printing</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bin Label Auto Print</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Shipment Nor Received</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkShip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ship</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Ship</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship Admin</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship KMI</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship - CSG</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Bi-mart Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Chain Dashboard</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Pedigree Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Print Queue</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">PrintQueue</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Order Not ShipChecked</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesWare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>-->
-            <!-- Compliance -->
-            <!--<li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkCompaliance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Compliance
-                </NavLink>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkC2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">C2</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">C2 Reprint</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CSOS Validator</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkDEA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DEA</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">DEA Search</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">DEA Exclusions</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Training Videos</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkDSCSA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DSCSA</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Wholesale Distributor and 3PL Reporting</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">TraceLink Product Track</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Item</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Item Family Maintenance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Weight Compliance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Dead Net Validation</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Recalled Items</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CS Watch</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Item Tables</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkOrdersCompl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orders</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Orders Monitoring</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Sales Order Compliance Review</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Order Monitoring History</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">OH Board of Pharm Lic Verification</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">SOMS Calc</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CS Orders</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ambrisentan Orders</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesCompl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
-                        <ul class="dropdown-menu scrollable-menu">
-                            <li><NavLink class="dropdown-item" href="#">Warehouse Log</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Account Search</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance Print</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance Thresholds</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Customer Compliance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">State Board Site admin</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">iPledge Wholesalers</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Industry News</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Task Manager</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance Forms</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">CSQ View</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">License and Certificates</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance News</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Compliance News</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkVendors" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">ARCOS Vendor Entry</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>-->
-            <!-- IT -->
-            <!--<li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkIT" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">IT</NavLink>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkGym" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gym</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Gym Login</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Gym Time</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkMalware" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Malware</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Malware / Virus Log</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">View Malware / Virus Log</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Malware Removal Process</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPortal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portal</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Portal Access By Page</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Portal Access (EMP)</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Portal Add Page</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkTicket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket System</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Ticket Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ticket Notes</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Ticket View</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkTracelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tracelink</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Paper Upload Helper</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Fix Item Adjustments</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Tracelink_VoidTransaction.aspx</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesIT" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">IT Utilities</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">How to Documentation</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">User Guide</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Website Password Reset Request</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Reprint New Account</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Time In Transit Utility</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>-->
-            <!-- Company -->
-            <!--<li class="nav-item dropdown">
-                <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkCompany" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Company
-                </NavLink>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPolicy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Policy</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Dress Code</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Harassment Policy</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Non-Compete Policy</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Handbook</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Employee Forms</NavLink></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkResource" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resource</NavLink>
-                        <ul class="dropdown-menu">
-                            <li><NavLink class="dropdown-item" href="#">Extensions</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Company</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Company News Entry</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Job Posting</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Post Job</NavLink></li>
-                            <li><NavLink class="dropdown-item" href="#">Goldmine Directory</NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>-->
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav">
+                <!-- Home -->
+                <li class="nav-item active">
+                    <NavLink class="nav-link" aria-current="page" href="#">Home</NavLink>
+                </li>
+                <!-- Sales -->
+                <li class="nav-item dropdown">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkSales" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales</NavLink>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSales">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeCustomer">Customer</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="actorlist">Actor Data</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="employeelist">Employee Data</NavLink></li>
+                                @*<li><NavLink class="dropdown-item" href="filminfo">Film Information</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="directorinfo">Director Data</NavLink></li>*@
+                                <li><NavLink class="dropdown-item" href="authordata">Author Data</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="publisherdata">Publisher Data</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePedigree" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ePedigree</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="storeinfo">Store Info</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="usersdata">User Data</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkInventory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="bookPublisherInfo">BookPublisher Info</NavLink></li>
+                                @*<li><NavLink class="dropdown-item" href="bookinfo">Book Info</NavLink></li>*@
+                                <li><NavLink class="dropdown-item" href="bookview">Book Receipt</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="ordercustomer">Order Customer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="empserviceinfo">Emp Service Info</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="prodcatesupplierdata">Product Data</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Inventory</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Inventory Beta</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Short Date Closeout</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
+                            <ul class="dropdown-menu scrollable-menu" role="menu">
+                                <li><NavLink class="dropdown-item" href="#">Door Camera</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">EDI Item Cross Reference</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price File Export</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Time In Transit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Tracking</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Website Customer Searches</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Shopko Order Release</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">New Account App</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">New Account App</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Order Conformation Sheet</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Analysis Survey</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Website Fax Sheet.aspx</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Formulary</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Quick Order</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Contract Viewer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Buyer Codes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Goldmine Keys</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price File Maintenance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">New Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">MGT Team</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">RSW Crystal</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Phone Summary Team</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Phone Summary Live</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Dashboard 2</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Niagara Training</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Warehouse Tour</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Controls Formulary</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">While Away</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">While Away</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Catalog</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Over 5k Credit Request App</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Marketing Resources</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bid Submission</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Management -->
+                <li class="nav-item dropdown">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkManagement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Management
+                    </NavLink>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSales">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeAccountReceivable">Account Receivable</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">AR Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Backorder Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Credit Limit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Next Customer Utility</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Credit Limit Risk Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Maintenance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">AR Utilities</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Validation</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">New Account MGMT</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Invoice Management</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Block Web Payment</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkContracts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contracts</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Contract Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Contract View</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkControls" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Controls</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">C2 Reprint</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeFinancial" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Financial</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Company Snapshot</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Gross To Net By Item</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Gross To Net By Vendor</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Year Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">GP Spread Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">MTD Flash</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Chargeback Dashboard</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeGoldmine" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Goldmine</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Goldmine Prospect Search.aspx</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Hayes List</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Territory Owner Change</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Territory Realignment</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeGPO" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GPO</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">GPO Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Trxade Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">GPO Dashboard</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeHR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HR</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Employee PTO</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Employees</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bonus Management</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkeInventory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Item Category</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Limit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Lost Serial View</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Overrides by Customer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Sales Info</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Trend</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Not Purchased - Price File</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">ShortDate Closeout</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Creation</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkOrders" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orders</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Missing Orders Dashboard</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePricing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pricing</NavLink>
+                            <ul class="dropdown-menu scrollable-menu">
+                                <li><NavLink class="dropdown-item" href="#">Competitive Scans</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Pricing</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">GP Red Light</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price Matrix</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price Collection</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price File Update</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price File Comparison</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Price File Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bid Process</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Avg Sale Price Div</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Price Transfer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bid Screen</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pricing Research</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Clear Pricing</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pricing Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pricing Research Transfer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pricing Counters</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Lost Sales</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">PricingDash_V3</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkePurchasing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchasing</NavLink>
+                            <ul class="dropdown-menu scrollable-menu">
+                                <li><NavLink class="dropdown-item" href="#">Realignment</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Debit Memo</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Demand</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Realignment V2</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Dead Net Changes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">OptiSource Item Validation</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Price Update Validation</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Inventory Maintenance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">REMS Items</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">OptiSource Files</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">OptiSource Not Reviewed</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">PO Release</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">ASN Variance</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales Analysis</NavLink>
+                            <ul class="dropdown-menu scrollable-menu" role="menu">
+                                <li><NavLink class="dropdown-item" href="#">Invoice Profit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Invoice Profit With Freight</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Inv Profit With Freight by Customer</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">MGT</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Milestone</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Order Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Phone Summary</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Budget Chart</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales order Profit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">True Invoice Profit</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">SalesComparison - MGT</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Monthly Sales Overview</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Metrics</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customers Not Ordering</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">GP Products Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Average DDays To Pay</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Orders Tiers</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Freight Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales History Overview</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Retail Gauges</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Cost Profit Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">RSW Crystal</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales YTD Map</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Hayes State Map</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pricing Export</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">RSG Sales Order</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Invoice With Freight</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Phone Search</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">RSG Team Management</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Fake Demand</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Days Not Worked</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">QA Score Card</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesMgmt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
+                            <ul class="dropdown-menu scrollable-menu" role="menu">
+                                <li><NavLink class="dropdown-item" href="#">Account Realignment</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Cart Login</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Commissions</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Company Budget</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Quota</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Drug Type Blocking</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Manual Freight Update</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">News Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">PO News Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Promotion Stats</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Salesperson Budget</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">UDF History Maint</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Update Days Remaining</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pay Periods</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Active PO Invoice Batches</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">MergeCandidate.aspx</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Commission Management</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Promo Codes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Controls Survey Review</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Back Order Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Return Analysis</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Edit Enrollment</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Late Shift Closing</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Rep Allocations</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CSG Auto-Release</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CSG EDI Enrollment</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Blanket Po Entry</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Warehouse -->
+                <li class="nav-item dropdown">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkWarehouse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Warehouse
+                    </NavLink>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkManagementWarehouse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Expire Dates</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Freight Errors</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item lot Serial View</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Maint</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Lot Inquiry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Outside Cameras</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Physical Count Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Physical Count Admin</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Transfer - Bins</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Transfer - Cross Warehouse</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Return</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">PhysicalCountAdminConsolidate</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Physical Count Admin Consolidate</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPutaway" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Put Away</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Put Away</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Inquiry - Put Away</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">RMA Put Away</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Put Away Consolidate</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Mispick Put Away</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkReceiving" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Receiving</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Receipt of Goods</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Receipt Posting Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Receipt Dashboard MutliBin</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Receipt of Goods MutliBin</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bin Label Printing</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bin Label Auto Print</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Shipment Nor Received</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkShip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ship</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Ship</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship Admin</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship KMI</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship - CSG</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Bi-mart Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Chain Dashboard</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Pedigree Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Print Queue</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">PrintQueue</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Order Not ShipChecked</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesWare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Ship Queue</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Compliance -->
+                <li class="nav-item dropdown">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkCompaliance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Compliance
+                    </NavLink>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkC2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">C2</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">C2 Reprint</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CSOS Validator</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkDEA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DEA</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">DEA Search</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">DEA Exclusions</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Training Videos</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkDSCSA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DSCSA</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Wholesale Distributor and 3PL Reporting</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">TraceLink Product Track</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkItem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Item</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Item Family Maintenance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Weight Compliance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Dead Net Validation</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Recalled Items</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CS Watch</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Item Tables</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkOrdersCompl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orders</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Orders Monitoring</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Sales Order Compliance Review</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Order Monitoring History</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">OH Board of Pharm Lic Verification</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">SOMS Calc</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CS Orders</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ambrisentan Orders</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesCompl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
+                            <ul class="dropdown-menu scrollable-menu">
+                                <li><NavLink class="dropdown-item" href="#">Warehouse Log</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Account Search</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance Print</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance Thresholds</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Customer Compliance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">State Board Site admin</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">iPledge Wholesalers</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Industry News</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Task Manager</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance Forms</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">CSQ View</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">License and Certificates</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance News</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Compliance News</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkVendors" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">ARCOS Vendor Entry</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- IT -->
+                <li class="nav-item dropdown">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkIT" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">IT</NavLink>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkGym" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gym</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Gym Login</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Gym Time</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkMalware" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Malware</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Malware / Virus Log</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">View Malware / Virus Log</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Malware Removal Process</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPortal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portal</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Portal Access By Page</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Portal Access (EMP)</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Portal Add Page</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkTicket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket System</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Ticket Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ticket Notes</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Ticket View</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkTracelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tracelink</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Paper Upload Helper</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Fix Item Adjustments</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Tracelink_VoidTransaction.aspx</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkUtilitiesIT" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilities</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">IT Utilities</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">How to Documentation</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">User Guide</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Website Password Reset Request</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Reprint New Account</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Time In Transit Utility</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Company -->
+                <li class="nav-item dropdown mr-5">
+                    <NavLink class="nav-link dropdown" href="#" id="navbarDropdownMenuLinkCompany" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Company
+                    </NavLink>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkPolicy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Policy</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Dress Code</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Harassment Policy</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Non-Compete Policy</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Handbook</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Employee Forms</NavLink></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <NavLink class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLinkResource" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resource</NavLink>
+                            <ul class="dropdown-menu">
+                                <li><NavLink class="dropdown-item" href="#">Extensions</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Company</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Company News Entry</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Job Posting</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Post Job</NavLink></li>
+                                <li><NavLink class="dropdown-item" href="#">Goldmine Directory</NavLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            @*<form class="d-flex" style="margin-left: 120px;">
+                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>*@
+        </div>
     </div>
 </nav>
 
