@@ -146,7 +146,7 @@ namespace TechnoDapperBlazor.Repository
         }
         public static async Task<List<string>> ReportHiredEmployeeAsync()
         {
-            using SqlConnection dbConnection = new SqlConnection(ConnData.ConnectionString);
+            await using SqlConnection dbConnection = new SqlConnection(ConnData.ConnectionString);
             string sQuery = @"select COUNT(*) from Employees where DATEDIFF(DAY,StartDate, GETDATE()) between 0 and 7 ";
 
             await dbConnection.OpenAsync();
@@ -158,7 +158,7 @@ namespace TechnoDapperBlazor.Repository
         }
         public static async Task<List<string>> ReportTerminatedEmployeeAsync()
         {
-            using SqlConnection dbConnection = new SqlConnection(ConnData.ConnectionString);
+            await using SqlConnection dbConnection = new SqlConnection(ConnData.ConnectionString);
             string sQuery = @"select COUNT(*) from Employees where DATEDIFF(YEAR,TerminationDate, GETDATE()) between 0 and 1 ";
 
             await dbConnection.OpenAsync();

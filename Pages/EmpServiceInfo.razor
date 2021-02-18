@@ -33,7 +33,7 @@ else
                     @emp.LastName
                 </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="EmpService" Property="EmailAddress" Title="Email">
+            <RadzenGridColumn TItem="EmpService" Property="EmailAddress" Title="Email" Width="105px">
                 <Template Context="emp">
                     @emp.EmailAddress
                 </Template>
@@ -43,12 +43,12 @@ else
                     @emp.PhoneNumber
                 </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="EmpService" Property="Position" Title="Position">
+            <RadzenGridColumn TItem="EmpService" Property="Position" Title="Position" Width="110px">
                 <Template Context="emp">
                     @emp.Position
                 </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="EmpService" Property="Department" Title="Department">
+            <RadzenGridColumn TItem="EmpService" Property="Department" Title="Department" Width="100px">
                 <Template Context="emp">
                     @emp.Department
                 </Template>
@@ -73,12 +73,12 @@ else
                     @emp.Manager
                 </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="EmpService" Property="FavoriteColor" Title="FavoriteColor">
+            <RadzenGridColumn TItem="EmpService" Property="FavoriteColor" Title="FavColor" Width="70px">
                 <Template Context="emp">
                     @emp.FavoriteColor
                 </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="EmpService" Property="TerminationDate" Title="Termination Date">
+            <RadzenGridColumn TItem="EmpService" Property="TerminationDate" Title="Termination Date" Width="100px">
                 <Template Context="emp">
                     @if (EmpService.IsDateTimeSet(emp.TerminationDate))
                     {
@@ -354,7 +354,7 @@ else
     public RadzenGrid<EmpService> EmpGrid;
     IEnumerable<EmpService> _empModel;
     IList<EmpService> _employees;
-    readonly EmpService _empOpen = new EmpService();
+    readonly EmpService _empOpen = new();
     EmpService _empEdit = new();
     List<string> _hiredNumber;
     List<string> _terminatedNumber;
@@ -370,13 +370,13 @@ else
         EmployeeStatus.Add("Active");
         EmployeeStatus.Add("Inactive");
 
-        _empModel = await EmpServiceRepo.GetEmployeeAsync();
-        _employees = _empModel.ToList();
-
         _hiredNumber = await EmpServiceRepo.ReportHiredEmployeeAsync();
         _terminatedNumber = await EmpServiceRepo.ReportTerminatedEmployeeAsync();
         _hiredEmp = string.Join(", ", _hiredNumber);
         _terminatedEmp = string.Join(", ", _terminatedNumber);
+
+        _empModel = await EmpServiceRepo.GetEmployeeAsync();
+        _employees = _empModel.ToList();
     }
 
     public async void SaveEmployee()
@@ -395,6 +395,7 @@ else
             ShowToast(MatToastType.Danger, "Error", $"Error Adding Employee");
         }
     }
+
     public async void UpdateEmployee()
     {
 
@@ -403,16 +404,15 @@ else
         {
             DialogEdit = false;
             await EmpGrid.Reload();
-            ShowToast(MatToastType.Success, "Success", "Employee Added Successfully");
-            _empModel = await EmpServiceRepo.GetEmployeeAsync();
-            _employees = _empModel.ToList();
+            ShowToast(MatToastType.Success, "Success", "Employee Updated Successfully");
         }
         else
         {
-            ShowToast(MatToastType.Danger, "Error", "Error Adding Employee");
+            ShowToast(MatToastType.Danger, "Error", "Error Updating Employee");
         }
 
     }
+
     public void EditRow(EmpService emp)
     {
         _empEdit = emp;
@@ -423,6 +423,7 @@ else
     {
         EmpGrid.CancelEditRow(emp);
     }
+
     public async void DeleteRow(EmpService emp)
     {
         if (_employees.Contains(emp))
@@ -447,17 +448,4 @@ else
             config.MaximumOpacity = 100;
         });
     }
-
-    public int Count { get; private set; }
-
-    //async Task LoadData(LoadDataArgs args)
-    //{
-    //    var query = await EmpServiceRepo.GetEmployeeAsync();
-
-    //    _empModel = query.AsEnumerable();
-
-    //    Count = _empModel.Count();
-
-    //    await InvokeAsync(StateHasChanged);
-    //}
 }

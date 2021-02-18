@@ -25,7 +25,7 @@ namespace TechnoDapperBlazor.Repository
             {
                 cst.Order = cstdtl;
                 return cst;
-            }, splitOn: "CustomerID");
+            }, splitOn: "CustomerID").ConfigureAwait(true);
 
             return customers.ToList();
 

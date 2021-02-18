@@ -7,6 +7,7 @@
 }
 else
 {
+    @*<RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@InsertRow" />*@
     <RadzenGrid @ref="ProGrid" AllowFiltering="true" AllowPaging="true" PageSize="15" AllowSorting="true" EditMode="DataGridEditMode.Single" Data="_products" TItem="Products" ColumnWidth="200px" RowCreate="@OnCreateRow">
         <Columns>
             <RadzenGridColumn Width="250px" TItem="Products" Property="Supplier.CompanyName" Title="Company Name">
@@ -118,9 +119,9 @@ else
         _products = await ProdCateSupplierRepo.GetProductDetailsAsync();
     }
 
-    void EditRow(Products product)
+    public async void EditRow(Products product)
     {
-        ProGrid.EditRow(product);
+        await ProGrid.EditRow(product);
     }
     public async void SaveRow(Products product)
     {

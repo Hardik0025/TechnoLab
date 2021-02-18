@@ -37,11 +37,11 @@ namespace TechnoDapperBlazor
             services.AddMatToaster(config =>
             {
                 config.Position = MatToastPosition.BottomRight;
-                config.PreventDuplicates = true;
+                config.PreventDuplicates = false;
                 config.NewestOnTop = true;
                 config.ShowCloseButton = true;
-                config.MaximumOpacity = 95;
-                config.VisibleStateDuration = 3000;
+                config.MaximumOpacity = 100;
+                config.VisibleStateDuration = 20000;
             });
         }
 
